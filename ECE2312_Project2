@@ -31,6 +31,29 @@ duration = 5;
 % xlabel('Time (s)'); ylabel('Frequency (Hz)');
 % title('team[[yourteamnumber]]-sinetone.wav');
 
+
+% Combining Sound Files
+[y2,fs] = audioread('Recording_1.wav');  % Previously recorded speech file from Project 1
+y = y(1:numel(y2));
+stereo_signal = [y, y2];
+sound(stereo_signal,fs);
+pause(duration); 
+load handel.mat
+filename = 'team2-speechchirp.wav';
+audiowrite(filename,stereo_signal, fs);
+[stereo,fs] = audioread(filename);
+
+% Spectrogram of Combined Sound File
+[S,F,T,P] = spectrogram(stereo, window, N.overlap, N.fft, fs, 'yaxis');
+figure;
+surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
+set(gca, 'clim', [-80,-20]);
+ylim([0, 8000]);
+xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title('team[2]-speechchirp');
+
+
+
 % sine wave linear progression
 
 for i = 0:8000
@@ -61,24 +84,3 @@ end
 % ylim([0, 8000]);
 % xlabel('Time (s)'); ylabel('Frequency (Hz)');
 % title('team[[yourteamnumber]]-cetk.wav');
-
-
-% Combining Sound Files
-[y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
-y = y(1:numel(y2));
-stereo_signal = [y, y2];
-sound(stereo_signal,fs);
-pause(duration); 
-load handel.mat
-filename = 'team2-speechchirp.wav';
-audiowrite(filename,stereo_signal, fs);
-[stereo,fs] = audioread(filename);
-
-% Spectrogram of Combined Sound File
-[S,F,T,P] = spectrogram(stereo, window, N.overlap, N.fft, fs, 'yaxis');
-figure;
-surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
-title('team[2]-speechchirp');
