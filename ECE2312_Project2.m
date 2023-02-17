@@ -35,21 +35,24 @@ plotSpec(ych, fs, 'team[2]-chirp.wav');
 
 cetk_values = [4000 4500 3500 2500 3000];
 cetk_durations = [0.25 0.5 1 0.5 2.75];
-
+cetk_sine_total = 0;
 for i = 1:length(cetk_durations)
      x1 = (cetk_values(i));
      x2 = (cetk_durations(i));
 cetk_sine = sin(2*pi*x1*(0:1/fs:x2));
 sound(cetk_sine,fs);
 
+cetk_sine_total = cat(2, cetk_sine_total,cetk_sine);
+
+end
+
+
 %  WAV file for cetk_sine
-WAVsave('team[2]-cetk.wav', cetk_sine, fs);
+WAVsave('team[2]-cetk.wav', cetk_sine_total, fs);
 [yc,fs] = audioread('team[2]-cetk.wav');
 
 % Spectrogram for WAV file cetk_sine
 plotSpec(yc, fs, 'team[2]-cetk.wav');
-
-end
 
 % Combining Sound Files
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
