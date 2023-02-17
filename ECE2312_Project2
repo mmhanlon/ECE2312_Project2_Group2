@@ -52,6 +52,31 @@ ylim([0, 8000]);
 xlabel('Time (s)'); ylabel('Frequency (Hz)');
 title('team[2]-speechchirp');
 
+% Stereo
+stereo_signal = [y2 , combined];
+sound(stereo_signal,fs);
+pause(duration);
+load handel.mat
+filename = 'team[2]-stereospeechsine.wav';
+audiowrite(filename,stereo_signal,fs);
+
+% Spectrograms of both Stereo Channels
+figure;
+subplot(1,2,1)
+[S,F,T,P] = spectrogram(combined, window, N.overlap, N.fft, fs, 'yaxis');
+surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
+set(gca, 'clim', [-80,-20]);
+ylim([0, 8000]);
+xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title('Speech Signal + Sine Tone');
+subplot(1,2,2)
+[S2,F2,T2,P2] = spectrogram(y2, window, N.overlap, N.fft, fs, 'yaxis');
+surf(T2,F2, 10*log10(P2), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
+set(gca, 'clim', [-80,-20]);
+ylim([0, 8000]);
+xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title('Speech Signal');
+
 
 
 % sine wave linear progression
