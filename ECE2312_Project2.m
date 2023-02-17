@@ -13,7 +13,7 @@ duration = 5;
 % Project 2 
 
 sine_wave = sin(2*pi*5000*(0:1/fs:duration));
-%sound(sine_wave,fs);
+sound(sine_wave,fs);
 
 % % WAV file for sine_wave
 WAVsave('team[2]-sinetone.wav', sine_wave, fs);
