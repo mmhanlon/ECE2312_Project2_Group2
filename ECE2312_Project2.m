@@ -32,7 +32,9 @@ soundsc(chirp_sine, fs)
 % 
 % % Spectrogram for WAV file chirp_sine
 % plotSpec(y, fs, 'team[2]-chirp.wav');
+
 % % Close Encounters of the Third Kind Notes
+% % cetk_sine
 
 cetk_values = [4000 4500 3500 2500 3000];
 cetk_durations = [0.25 0.5 1 0.5 2.75];
@@ -43,6 +45,13 @@ for i = 1:length(cetk_durations)
 cetk_sine = sin(2*pi*x1*(0:1/fs:x2));
 sound(cetk_sine,fs);
 end
+
+%  WAV file for cetk_sine
+WAVsave('team[2]-cetk.wav', cetk_sine, fs);
+[y,fs] = audioread('team[2]-cetk.wav');
+
+% Spectrogram for WAV file cetk_sine
+plotSpec(y, fs, 'team[2]-cetk.wav');
 
 
 % Combining Sound Files
@@ -68,3 +77,6 @@ WAVsave('team[2]-stereospeechsine.wav', stereo_signal, fs);
 plotSpec(combined, fs, 'Speech Signal + Sine Tone');
 
 plotSpec(y2, fs, 'Speech Signal');
+
+
+
