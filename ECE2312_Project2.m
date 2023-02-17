@@ -68,7 +68,7 @@ WAVsave('team[2]-speechchirp.wav', combined_signal, fs);
 plotSpec(combined, fs, 'team[2]-speechchirp');
 
 % Lowpass filter
-F = [0 0.18 0.18 1]
+F = [0 0.13 0.18 1]
 A = [1 1 0 0]
 lpf = firls(255, F, A);
 filtered = filter(lpf, A, combined);
