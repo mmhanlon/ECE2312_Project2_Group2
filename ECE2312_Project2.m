@@ -54,9 +54,6 @@ plotSpec(y, fs, 'team[2]-cetk.wav');
 
 end
 
-
-
-
 % Combining Sound Files
 [y,fs] = audioread('team[2]-sinetone.wav'); % 5000 Hz sine tone
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
@@ -70,6 +67,17 @@ WAVsave('team[2]-speechchirp.wav', combined_signal, fs);
 
 % Spectrogram of Combined Sound File
 plotSpec(combined, fs, 'team[2]-speechchirp');
+
+% Lowpass filter
+F = [0 0.18 0.18 1]
+A = [1 1 0 0]
+lpf = firls(255, F, A);
+filtered = filter(lpf, A, combined);
+WAVsave('team[2]-filteredspeechsine.wav', filtered, fs);
+[y,fs] = audioread('team[2]-filteredspeechsine.wav');
+
+% Spectrogram for WAV file lowpass
+plotSpec(y, fs, 'team[2]-filteredspeechsine.wav');
 
 % Stereo
 stereo_signal = [y2 , combined];
