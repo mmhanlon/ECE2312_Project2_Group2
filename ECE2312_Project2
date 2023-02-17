@@ -23,15 +23,7 @@ clear sine_wave fs
 [y,fs] = audioread(filename);
 
 % Spectrogram for WAV file sine_wave
-window = hamming(512);
-N.overlap = 256;
-N.fft = 1024;
-[S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
-figure;
-surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
+plotSpec(y, fs);
 title('team[2]-sinetone.wav');
 
 % sine wave linear progression
@@ -46,12 +38,7 @@ clear chirp_sine fs
 [y,fs] = audioread(filename);
 
 % Spectrogram for WAV file chirp_sine
-[S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
-figure;
-surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
+plotSpec(y, fs);
 title('team[2]-chirp.wav');
 
 % Combining Sound Files
@@ -66,12 +53,7 @@ audiowrite(filename,combined_signal, fs);
 [combined,fs] = audioread(filename);
 
 % Spectrogram of Combined Sound File
-[S,F,T,P] = spectrogram(combined, window, N.overlap, N.fft, fs, 'yaxis');
-figure;
-surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
+plotSpec(combined, fs);
 title('team[2]-speechchirp');
 
 % Stereo
@@ -83,18 +65,8 @@ filename = 'team[2]-stereospeechsine.wav';
 audiowrite(filename,stereo_signal,fs);
 
 % Spectrograms of both Stereo Channels
-figure;
-subplot(1,2,1)
-[S,F,T,P] = spectrogram(combined, window, N.overlap, N.fft, fs, 'yaxis');
-surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
+plotSpec(combined, fs);
 title('Speech Signal + Sine Tone');
-subplot(1,2,2)
-[S2,F2,T2,P2] = spectrogram(y2, window, N.overlap, N.fft, fs, 'yaxis');
-surf(T2,F2, 10*log10(P2), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-set(gca, 'clim', [-80,-20]);
-ylim([0, 8000]);
-xlabel('Time (s)'); ylabel('Frequency (Hz)');
+
+plotSpec(y2, fs);
 title('Speech Signal');
