@@ -16,11 +16,8 @@ sine_wave = sin(2*pi*5000*(0:1/fs:duration));
 %sound(sine_wave,fs);
 
 % % WAV file for sine_wave
-load handel.mat
-filename = 'team[2]-sinetone.wav';
-audiowrite(filename,sine_wave,fs);
-clear sine_wave fs
-[y,fs] = audioread(filename);
+WAVsave('team[2]-sinetone.wav', sine_wave, fs);
+[y,fs] = audioread('team[2]-sinetone.wav');
 
 % Spectrogram for WAV file sine_wave
 plotSpec(y, fs);
@@ -31,11 +28,8 @@ chirp_sine = sin(2*pi*((0:1/fs:duration).*800.*(0:1/fs:duration)));
 soundsc(chirp_sine, fs)
 
 % WAV file for chirp_wave
-load handel.mat
-filename = 'team[2]-chirp.wav';
-audiowrite(filename,chirp_sine,fs);
-clear chirp_sine fs
-[y,fs] = audioread(filename);
+WAVsave('team[2]-chirp.wav', chirp_sine, fs);
+[y,fs] = audioread('team[2]-chirp.wav');
 
 % Spectrogram for WAV file chirp_sine
 plotSpec(y, fs);
@@ -46,7 +40,8 @@ title('team[2]-chirp.wav');
 y = y(1:numel(y2));
 combined_signal = (y+y2)/2;
 sound(combined_signal,fs);
-pause(duration); 
+pause(duration);
+
 load handel.mat
 filename = 'team[2]-speechchirp.wav';
 audiowrite(filename,combined_signal, fs);
