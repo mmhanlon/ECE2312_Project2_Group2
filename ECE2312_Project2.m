@@ -47,10 +47,10 @@ sound(cetk_sine,fs);
 
 %  WAV file for cetk_sine
 WAVsave('team[2]-cetk.wav', cetk_sine, fs);
-[y,fs] = audioread('team[2]-cetk.wav');
+[yc,fs] = audioread('team[2]-cetk.wav');
 
 % Spectrogram for WAV file cetk_sine
-plotSpec(y, fs, 'team[2]-cetk.wav');
+plotSpec(yc, fs, 'team[2]-cetk.wav');
 
 end
 
