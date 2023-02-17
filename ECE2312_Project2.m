@@ -20,8 +20,7 @@ WAVsave('team[2]-sinetone.wav', sine_wave, fs);
 [y,fs] = audioread('team[2]-sinetone.wav');
 
 % Spectrogram for WAV file sine_wave
-plotSpec(y, fs);
-title('team[2]-sinetone.wav');
+plotSpec(y, fs, 'team[2]-sinetone.wav');
 
 % sine wave linear progression
 chirp_sine = sin(2*pi*((0:1/fs:duration).*800.*(0:1/fs:duration)));
@@ -32,8 +31,7 @@ WAVsave('team[2]-chirp.wav', chirp_sine, fs);
 [y,fs] = audioread('team[2]-chirp.wav');
 
 % Spectrogram for WAV file chirp_sine
-plotSpec(y, fs);
-title('team[2]-chirp.wav');
+plotSpec(y, fs, 'team[2]-chirp.wav');
 
 % Combining Sound Files
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
@@ -46,8 +44,7 @@ WAVsave('team[2]-speechchirp.wav', combined_signal, fs);
 [combined,fs] = audioread('team[2]-speechchirp.wav');
 
 % Spectrogram of Combined Sound File
-plotSpec(combined, fs);
-title('team[2]-speechchirp');
+plotSpec(combined, fs, 'team[2]-speechchirp');
 
 % Stereo
 stereo_signal = [y2 , combined];
@@ -56,8 +53,6 @@ pause(duration);
 WAVsave('team[2]-stereospeechsine.wav', stereo_signal, fs);
 
 % Spectrograms of both Stereo Channels
-plotSpec(combined, fs);
-title('Speech Signal + Sine Tone');
+plotSpec(combined, fs, 'Speech Signal + Sine Tone');
 
-plotSpec(y2, fs);
-title('Speech Signal');
+plotSpec(y2, fs, 'Speech Signal');
