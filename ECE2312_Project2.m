@@ -42,10 +42,8 @@ combined_signal = (y+y2)/2;
 sound(combined_signal,fs);
 pause(duration);
 
-load handel.mat
-filename = 'team[2]-speechchirp.wav';
-audiowrite(filename,combined_signal, fs);
-[combined,fs] = audioread(filename);
+WAVsave('team[2]-speechchirp.wav', combined_signal, fs);
+[combined,fs] = audioread('team[2]-speechchirp.wav');
 
 % Spectrogram of Combined Sound File
 plotSpec(combined, fs);
@@ -55,9 +53,7 @@ title('team[2]-speechchirp');
 stereo_signal = [y2 , combined];
 sound(stereo_signal,fs);
 pause(duration);
-load handel.mat
-filename = 'team[2]-stereospeechsine.wav';
-audiowrite(filename,stereo_signal,fs);
+WAVsave('team[2]-stereospeechsine.wav', stereo_signal, fs);
 
 % Spectrograms of both Stereo Channels
 plotSpec(combined, fs);
