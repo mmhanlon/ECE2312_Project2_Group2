@@ -12,25 +12,47 @@ duration = 5;
 
 % Project 2 
 
-% sine_wave = sin(2*pi*5000*(0:1/fs:duration));
-% %sound(sine_wave,fs);
-% 
-% % WAV file for sine_wave
-% load handel.mat
-% filename = 'team[[yourteamnumber]]-sinetone.wav';
-% audiowrite(filename,sine_wave,fs);
-% clear sine_wave fs
-% [y,fs] = audioread(filename);
-% 
-% % Spectrogram for WAV file sine_wave
-% [S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
-% figure;
-% surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-% set(gca, 'clim', [-80,-20]);
-% ylim([0, 8000]);
-% xlabel('Time (s)'); ylabel('Frequency (Hz)');
-% title('team[[yourteamnumber]]-sinetone.wav');
+sine_wave = sin(2*pi*5000*(0:1/fs:duration));
+%sound(sine_wave,fs);
 
+% % WAV file for sine_wave
+load handel.mat
+filename = 'team[2]-sinetone.wav';
+audiowrite(filename,sine_wave,fs);
+clear sine_wave fs
+[y,fs] = audioread(filename);
+
+% Spectrogram for WAV file sine_wave
+window = hamming(512);
+N.overlap = 256;
+N.fft = 1024;
+[S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
+figure;
+surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
+set(gca, 'clim', [-80,-20]);
+ylim([0, 8000]);
+xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title('team[2]-sinetone.wav');
+
+% sine wave linear progression
+chirp_sine = sin(2*pi*((0:1/fs:duration).*800.*(0:1/fs:duration)));
+soundsc(chirp_sine, fs)
+
+% WAV file for chirp_wave
+load handel.mat
+filename = 'team[2]-chirp.wav';
+audiowrite(filename,chirp_sine,fs);
+clear chirp_sine fs
+[y,fs] = audioread(filename);
+
+% Spectrogram for WAV file chirp_sine
+[S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
+figure;
+surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
+set(gca, 'clim', [-80,-20]);
+ylim([0, 8000]);
+xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title('team[2]-chirp.wav');
 
 % Combining Sound Files
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
@@ -76,36 +98,3 @@ set(gca, 'clim', [-80,-20]);
 ylim([0, 8000]);
 xlabel('Time (s)'); ylabel('Frequency (Hz)');
 title('Speech Signal');
-
-
-
-% sine wave linear progression
-
-for i = 0:8000
-chirp_sine = sin(2*pi*i*(0:1/fs:duration));
-sound(chirp_sine, fs)
-end
-
-
-% create chrip sine
-% freqStart = 40;
-% freqEnd = 1e4;
-% phaseInit = -90;
-% method = 'linear';
-% y = chirp(t, freqStart, tEnd, freqEnd, method, phaseInit);
-
-% % WAV file for chirp_wave
-% load handel.mat
-% filename = 'team[[yourteamnumber]]-cetk.wav';
-% audiowrite(filename,chirp_sine,fs);
-% clear chirp_sine fs
-% [y,fs] = audioread(filename);
-% 
-% % Spectrogram for WAV file chirp_sine
-% [S,F,T,P] = spectrogram(y,window, N.overlap, N.fft, fs, 'yaxis');
-% figure;
-% surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(jet);
-% set(gca, 'clim', [-80,-20]);
-% ylim([0, 8000]);
-% xlabel('Time (s)'); ylabel('Frequency (Hz)');
-% title('team[[yourteamnumber]]-cetk.wav');
