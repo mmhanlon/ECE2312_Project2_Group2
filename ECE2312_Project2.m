@@ -58,8 +58,9 @@ end
 
 
 % Combining Sound Files
+[y,fs] = audioread('team[2]-sinetone.wav'); % 5000 Hz sine tone
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
-y = y(1:numel(y2));
+y = y(1:numel(y2)); % Ensure both signals are of equal length
 combined_signal = (y+y2)/2;
 sound(combined_signal,fs);
 pause(duration);
