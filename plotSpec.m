@@ -1,4 +1,4 @@
-function [] = plotSpec(data, fs)
+function [] = plotSpec(data, fs, name)
 
 window = hamming(512);
 N.overlap = 256;
@@ -9,5 +9,6 @@ surf(T,F, 10*log10(P), 'edgecolor', 'none'); axis tight; view(0,90); colormap(je
 set(gca, 'clim', [-80,-20]);
 ylim([0, 8000]);
 xlabel('Time (s)'); ylabel('Frequency (Hz)');
+title(name);
 
 end
