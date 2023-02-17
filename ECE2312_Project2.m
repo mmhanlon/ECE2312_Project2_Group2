@@ -44,7 +44,6 @@ for i = 1:length(cetk_durations)
      x2 = (cetk_durations(i));
 cetk_sine = sin(2*pi*x1*(0:1/fs:x2));
 sound(cetk_sine,fs);
-end
 
 %  WAV file for cetk_sine
 WAVsave('team[2]-cetk.wav', cetk_sine, fs);
@@ -52,6 +51,10 @@ WAVsave('team[2]-cetk.wav', cetk_sine, fs);
 
 % Spectrogram for WAV file cetk_sine
 plotSpec(y, fs, 'team[2]-cetk.wav');
+
+end
+
+
 
 
 % Combining Sound Files
@@ -77,6 +80,5 @@ WAVsave('team[2]-stereospeechsine.wav', stereo_signal, fs);
 plotSpec(combined, fs, 'Speech Signal + Sine Tone');
 
 plotSpec(y2, fs, 'Speech Signal');
-
 
 
