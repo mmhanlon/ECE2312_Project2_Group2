@@ -15,7 +15,7 @@ n = 0:1/fs:duration;
 sine_wave = sin(2*pi*5000*n);
 sound(sine_wave,fs);
 
-% % WAV file for sine_wave
+%  WAV file for sine_wave
 WAVsave('team[2]-sinetone.wav', sine_wave, fs);
 [y,fs] = audioread('team[2]-sinetone.wav');
 
@@ -26,13 +26,23 @@ plotSpec(y, fs, 'team[2]-sinetone.wav');
 chirp_sine = sin(2*pi*(n.*800.*n));
 soundsc(chirp_sine, fs)
 
-% WAV file for chirp_wave
-WAVsave('team[2]-chirp.wav', chirp_sine, fs);
-[y,fs] = audioread('team[2]-chirp.wav');
+% % WAV file for chirp_wave
+% WAVsave('team[2]-chirp.wav', chirp_sine, fs);
+% [y,fs] = audioread('team[2]-chirp.wav');
+% 
+% % Spectrogram for WAV file chirp_sine
+% plotSpec(y, fs, 'team[2]-chirp.wav');
+% % Close Encounters of the Third Kind Notes
 
-% Spectrogram for WAV file chirp_sine
-plotSpec(y, fs, 'team[2]-chirp.wav');
+cetk_values = [4000 4500 3500 2500 3000];
+cetk_durations = [0.25 0.5 1 0.5 2.75];
 
+for i = 1:length(cetk_durations)
+     x1 = (cetk_values(i));
+     x2 = (cetk_durations(i));
+cetk_sine = sin(2*pi*x1*(0:1/fs:x2));
+sound(cetk_sine,fs);
+end
 
 
 % Combining Sound Files
