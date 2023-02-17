@@ -9,10 +9,10 @@ fs = 48000;
 nBits = 8;
 nChannels = 1;
 duration = 5;
+n = 0:1/fs:duration;
 
-% Project 2 
-
-sine_wave = sin(2*pi*5000*(0:1/fs:duration));
+% Project 2
+sine_wave = sin(2*pi*5000*n);
 sound(sine_wave,fs);
 
 % % WAV file for sine_wave
@@ -23,7 +23,7 @@ WAVsave('team[2]-sinetone.wav', sine_wave, fs);
 plotSpec(y, fs, 'team[2]-sinetone.wav');
 
 % sine wave linear progression
-chirp_sine = sin(2*pi*((0:1/fs:duration).*800.*(0:1/fs:duration)));
+chirp_sine = sin(2*pi*(n.*800.*n));
 soundsc(chirp_sine, fs)
 
 % WAV file for chirp_wave
@@ -32,6 +32,8 @@ WAVsave('team[2]-chirp.wav', chirp_sine, fs);
 
 % Spectrogram for WAV file chirp_sine
 plotSpec(y, fs, 'team[2]-chirp.wav');
+
+
 
 % Combining Sound Files
 [y2,fs] = audioread('Recording_1.wav'); % Previously recorded speech file from Project 1
